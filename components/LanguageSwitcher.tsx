@@ -1,70 +1,59 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
-import * as React from "react";
-
-import { localeItems } from "../i18n-metadata";
+} from "@/components/ui/dropdown-menu"
+import { localeItems } from "@/i18n-metadata"
+import { setUserLocale } from "@/i18n/locale"
+import { cn } from "@/lib/utils"
+import { CheckCircleIcon } from "@heroicons/react/20/solid"
+import { useLocale } from "next-intl"
+import * as React from "react"
 
 export function LanguageSwitcher() {
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
+  const locale = useLocale()
 
-  const handleChange = (code: string) => {
-    const newLocale = code;
-
-    const rootPath = "/";
-    const currentLocalePath = `/${locale}`;
-    const newLocalePath = `/${newLocale}`;
-
-    // Function to construct new path with locale prefix
-    const constructLocalePath = (path: string, newLocale: string) => {
-      if (path.startsWith(currentLocalePath)) {
-        return path.replace(currentLocalePath, `/${newLocale}`);
-      } else {
-        return `/${newLocale}${path}`;
-      }
-    };
-
-    if (pathname === rootPath || !pathname) {
-      router.push(newLocalePath);
-    } else if (
-      pathname === currentLocalePath ||
-      pathname === `${currentLocalePath}/`
-    ) {
-      router.push(newLocalePath);
-    } else {
-      const newPath = constructLocalePath(pathname, newLocale);
-      router.push(newPath);
-    }
-  };
+  const handleSelect = (e: Event, newLocale: string) => {
+    e.preventDefault() // 阻止默认的关闭行为
+    setUserLocale(newLocale)
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="rounded-full px-[9px]">
+        <Button
+          variant="outline"
+          size="sm"
+          className="rounded-full px-[9px] bg-white dark:bg-black cursor-pointer hover:bg-accent/50 dark:hover:bg-accent/50"
+        >
           {localeItems.find((item) => item.code === locale)?.name}
           <span className="sr-only">Change language</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {localeItems.map((item) => (
+      <DropdownMenuContent className="flex flex-col gap-0.5" align="end">
+        {localeItems.map((item, index) => (
           <DropdownMenuItem
             key={item.code}
-            onClick={() => handleChange(item.code)}
+            onSelect={(e) => handleSelect(e, item.code)}
+            className={cn(
+              {
+                "bg-muted gap-3 font-semibold": locale === item.code,
+              },
+              {
+                "rounded-t-[5px]": index === localeItems.length - 1,
+                "rounded-[5px]": index !== 0 && index !== localeItems.length - 1,
+                "rounded-b-[5px]": index === 0,
+              },
+            )}
           >
-            {item.name}
+            {item.name} {locale === item.code && <CheckCircleIcon className="size-4" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

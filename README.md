@@ -1,45 +1,38 @@
-<h1 align="center">NezhaDash</h1>
-
-<strong>NezhaDash 是一个基于 Next.js 和 哪吒监控 的仪表盘</strong>
+<div align="center"><img width="600" alt="nezhadash" src="https://github.com/user-attachments/assets/0a5768e1-96f2-4f8a-b77f-01488ed3b237"></div>
+<h3 align="center">NezhaDash 是一个基于 Next.js 和 哪吒监控 的仪表盘</h3>
 <br>
 
 </div>
 
-| 一键部署到 Vercel-推荐                                | Docker部署                                                      | Cloudflare部署                                                          | 如何更新？                                                |
-| ----------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------- |
-| [部署简易教程](https://buycoffee.top/blog/tech/nezha) | [Docker 部署教程](https://buycoffee.top/blog/tech/nezha-docker) | [Cloudflare 部署教程](https://buycoffee.top/blog/tech/nezha-cloudflare) | [更新教程](https://buycoffee.top/blog/tech/nezha-upgrade) |
-| [Vercel-demo](https://nezha-dash-ruddy.vercel.app)    | [Docker-demo](https://nezha-docker.buycoffee.tech)              | [Cloudflare-demo](https://nezha-cloudflare.buycoffee.tech)              |
+> [!CAUTION]
+> 此为 V0 兼容版本，与 V1 内置版本功能上可能有所不同
+>
+> V0 | V1 版本 issue 请在当前仓库发起
 
-#### 环境变量
+> [!TIP]
+> 有关 V1 版本 pr 可移步 https://github.com/hamster1963/nezha-dash-v1
 
-| 变量名                         | 含义                             | 示例                                                          |
-| ------------------------------ | -------------------------------- | ------------------------------------------------------------- |
-| NezhaBaseUrl                   | nezha 面板地址                   | http://120.x.x.x:8008                                         |
-| NezhaAuth                      | nezha 面板 API Token             | 5hAY3QX6Nl9B3Uxxxx26KMvOMyXS1Udi                              |
-| DefaultLocale                  | 面板默认显示语言（代码参考下表） | **默认**：en                                                  |
-| ForceShowAllServers            | 是否强制显示所有服务器           | **默认**：false                                               |
-| NEXT_PUBLIC_NezhaFetchInterval | 获取数据间隔（毫秒）             | **默认**：2000                                                |
-| NEXT_PUBLIC_ShowFlag           | 是否显示旗帜                     | **默认**：false                                               |
-| NEXT_PUBLIC_DisableCartoon     | 是否禁用卡通人物                 | **默认**：false                                               |
-| NEXT_PUBLIC_ShowTag            | 是否显示标签                     | **默认**：false                                               |
-| NEXT_PUBLIC_ShowNetTransfer    | 是否显示流量信息                 | **默认**：false                                               |
-| NEXT_PUBLIC_ForceUseSvgFlag    | 是否强制使用SVG旗帜              | **默认**：false                                               |
-| NEXT_PUBLIC_CustomLogo         | 自定义Logo                       | **示例**：https://nezha-cf.buycoffee.top/apple-touch-icon.png |
-| NEXT_PUBLIC_CustomTitle        | 自定义标题                       |                                                               |
-| NEXT_PUBLIC_CustomDescription  | 自定义描述(无多语言支持)         |                                                               |
+### 部署
 
-#### 多语言支持
+支持部署环境：
 
-| 语言     | 代码 | 是否完成翻译 |
-| -------- | ---- | ------------ |
-| 简体中文 | zh   | 是           |
-| 繁体中文 | zh-t | 是           |
-| 英语     | en   | 是           |
-| 日语     | ja   | 是           |
+- Vercel
+- Cloudflare
+- Docker
 
-![screen](/.github/shot-1.png)
-![screen](/.github/shot-2.png)
-![screen](/.github/shot-3.png)
-![screen](/.github/shot-1-dark.png)
-![screen](/.github/shot-2-dark.png)
-![screen](/.github/shot-3-dark.png)
+[演示站点](https://nezha-cf.buycoffee.top)
+[说明文档](https://nezhadash-docs.vercel.app)
+
+### 如何更新
+
+[更新教程](https://buycoffee.top/blog/tech/nezha-upgrade)
+
+### 环境变量
+
+[环境变量介绍](https://nezhadash-docs.vercel.app/environment)
+
+![screen](/.github/v2-1.webp)
+![screen](/.github/v2-2.webp)
+![screen](/.github/v2-3.webp)
+![screen](/.github/v2-4.webp)
+![screen](/.github/v2-dark.webp)
