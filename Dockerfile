@@ -1,4 +1,4 @@
-FROM oven/bun:1 AS base
+FROM --platform=$BUILDPLATFORM oven/bun:1 AS base
 
 # Stage 1: Install dependencies
 FROM base AS deps
@@ -14,7 +14,7 @@ COPY . .
 RUN bun run build
 
 # Stage 3: Production image
-FROM oven/bun:1-alpine AS runner
+FROM node:23-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app/public ./public
@@ -22,4 +22,4 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
-CMD ["bun", "run", "server.js"]
+CMD ["node", "server.js"]
